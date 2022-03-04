@@ -1,0 +1,19 @@
+import os
+
+def my_loopdef(dpath): # function for check file and directory
+    defpath = dpath
+    os.chdir(defpath)
+    entries = os.listdir()
+    print(entries)
+    for x in entries:
+        if x.endswith(".xlsx"):
+            print('Excel :'+ x)
+            my_checkfile(x) # Create function readfile if you want to check excel file ( comment if no need to use )
+        else:
+            print('Directory :'+ x)
+            os.chdir(defpath)
+            os.chdir(x)
+            print(os.getcwd())
+            my_loopdef(os.getcwd()) # recurcieve loop for drill down directory
+            
+my_loopdef("U:/Project") #Start Directory that you want to drive thru
